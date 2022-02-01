@@ -5,15 +5,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './App';
+import { CartProvider } from './context/cart-context';
 import reportWebVitals from './reportWebVitals';
 import { theme } from './theme';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline enableColorScheme />
-      <App />
-    </ThemeProvider>
+    <CartProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline enableColorScheme />
+        <App />
+      </ThemeProvider>
+    </CartProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
