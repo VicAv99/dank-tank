@@ -1,3 +1,9 @@
+export interface ProductResponse {
+  status: string;
+  value: Product[];
+  error: string;
+}
+
 export interface Product {
   amount: null;
   brand_subtype: string;
