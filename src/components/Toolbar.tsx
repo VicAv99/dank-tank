@@ -1,17 +1,42 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { AppBar, Box, Button, Toolbar as MuiToolbar, Typography } from '@mui/material';
+import { AppBar, Badge, BadgeProps, Box, IconButton, styled, Toolbar as MuiToolbar, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-export const Toolbar = () => {
+interface ToolbarProps {
+  id: string;
+}
+
+const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
+
+const TextLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+`;
+
+export const Toolbar = ({ id }: ToolbarProps) => {
   return (
-    <AppBar position="static">
+    <AppBar id={id} position="static">
       <MuiToolbar variant="dense">
-        <Typography variant="h6" color="inherit" component="div">
-          Dank Tank
-        </Typography>
+        <TextLink to="/">
+          <Typography variant="h6" color="inherit" component="div">
+            Dank Tank
+          </Typography>
+        </TextLink>
         <Box sx={{ flexGrow: 1 }} />
-        <Button variant="contained" color="secondary">
-          <ShoppingCartIcon />
-        </Button>
+        <Link to="/cart">
+          <IconButton sx={{ margin: '5px 0' }} color="warning" aria-label="cart">
+            <StyledBadge badgeContent={4} color="secondary">
+              <ShoppingCartIcon fontSize="medium" />
+            </StyledBadge>
+          </IconButton>
+        </Link>
       </MuiToolbar>
     </AppBar>
   )
