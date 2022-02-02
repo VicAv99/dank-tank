@@ -4,9 +4,12 @@ import { Product } from '../api-interfaces';
 
 interface ProductCardProps {
   product: Product;
+  onAddToCart: (product: Product) => void;
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
+  const addToCartClicked = (product) => onAddToCart(product);
+
   return (
     <Card sx={{ width: 250, height: "auto" }}>
       <CardMedia
@@ -25,7 +28,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Buy</Button>
+        <Button onClick={addToCartClicked} size="small">Add to Cart</Button>
       </CardActions>
     </Card>
   )

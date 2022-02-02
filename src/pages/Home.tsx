@@ -1,11 +1,13 @@
 import { Box, Container, Grid } from '@mui/material';
+import { useContext } from 'react';
 
-import { fetchProducts, Product } from '../api-interfaces/client';
+import { Product } from '../api-interfaces';
 import { ProductCard } from '../components';
-import { useAsync } from '../hooks';
+import { CartContext } from '../context';
 
 export const Home = () => {
-  const { value: products } = useAsync<Product[]>(fetchProducts);
+  const { addToCart, products } = useContext(CartContext);
+  const addToCartClicked = (product: Product) => addToCart(product);
 
   return (
     <Container>
@@ -14,7 +16,7 @@ export const Home = () => {
           {
             !!products && products?.map((product) => (
               <Grid key={product.product_id} item>
-                <ProductCard product={product} />
+                <ProductCard product={product} onAddToCart={addToCartClicked} />
               </Grid>
             ))
           }

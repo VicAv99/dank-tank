@@ -2,6 +2,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { AppBar, Badge, BadgeProps, Box, IconButton, styled, Toolbar as MuiToolbar, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+import { useCartCount } from '../hooks/cart-context-hooks/use-cart-count';
+
 interface ToolbarProps {
   id: string;
 }
@@ -21,6 +23,8 @@ const TextLink = styled(Link)`
 `;
 
 export const Toolbar = ({ id }: ToolbarProps) => {
+  const cartCount = useCartCount();
+
   return (
     <AppBar id={id} position="static">
       <MuiToolbar variant="dense">
@@ -32,7 +36,7 @@ export const Toolbar = ({ id }: ToolbarProps) => {
         <Box sx={{ flexGrow: 1 }} />
         <Link to="/cart">
           <IconButton sx={{ margin: '5px 0' }} color="warning" aria-label="cart">
-            <StyledBadge badgeContent={4} color="secondary">
+            <StyledBadge badgeContent={cartCount} color="secondary">
               <ShoppingCartIcon fontSize="medium" />
             </StyledBadge>
           </IconButton>
