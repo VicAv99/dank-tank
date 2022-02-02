@@ -5,6 +5,7 @@ import { useCartContext } from '../hooks';
 
 export interface CartState {
   products?: Product[];
+  selectedProducts?: Product[];
   addToCart: (product: Product) => void;
   removeFromCart: (product: Product) => void;
   clearCart: () => void;
@@ -13,6 +14,7 @@ export interface CartState {
 
 export const CartContext = createContext<CartState>({
   products: [],
+  selectedProducts: [],
   addToCart: () => { },
   removeFromCart: () => { },
   clearCart: () => { },
