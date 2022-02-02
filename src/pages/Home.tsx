@@ -20,7 +20,7 @@ export const Home = () => {
   return (
     <Container>
       <Box sx={{ display: 'flex', flexWrap: 'nowrap' }} my={5}>
-        <TextField onChange={onSearchChange} name="search" size='small' fullWidth sx={{ marginRight: 1 }} label="Search by Name or Description" variant="outlined" />
+        <TextField onChange={onSearchChange} name="search" size='small' fullWidth label="Search by Name or Description" variant="outlined" />
       </Box>
       <Box my={5}>
         <Grid container spacing={2}>
@@ -28,7 +28,7 @@ export const Home = () => {
             !!products && products?.map((product) => (
               <Fragment key={product.product_id}>
                 {searchTermIncluded(product) && (
-                  <Grid item>
+                  <Grid item xs={12} sm={6} md={3}>
                     <ProductCard product={product} onAddToCart={addToCartClicked} />
                   </Grid>
                 )}

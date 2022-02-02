@@ -11,7 +11,7 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   const addToCartClicked = () => onAddToCart(product);
 
   return (
-    <Card sx={{ width: 250, height: "auto" }}>
+    <Card>
       <CardMedia
         component="img"
         height="140"
