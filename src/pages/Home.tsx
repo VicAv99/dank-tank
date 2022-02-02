@@ -11,7 +11,7 @@ export const Home = () => {
   const addToCartClicked = (product: Product) => addToCart(product);
   const searchTermIncluded = (product: Product) => product.name.toLowerCase().includes(searchTerm) || product.description.toLowerCase().includes(searchTerm);
 
-  const onSubmit = (e: any) => {
+  const onSearchChange = (e: any) => {
     const searchTerm = e.target.value;
     e.preventDefault();
     setSearchTerm(searchTerm.toLowerCase());
@@ -20,7 +20,7 @@ export const Home = () => {
   return (
     <Container>
       <Box sx={{ display: 'flex', flexWrap: 'nowrap' }} my={5}>
-        <TextField onChange={onSubmit} name="search" size='small' fullWidth sx={{ marginRight: 1 }} label="Search by Name or Description" variant="outlined" />
+        <TextField onChange={onSearchChange} name="search" size='small' fullWidth sx={{ marginRight: 1 }} label="Search by Name or Description" variant="outlined" />
       </Box>
       <Box my={5}>
         <Grid container spacing={2}>
