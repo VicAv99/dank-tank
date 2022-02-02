@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './App';
-import { CartProvider } from './context/cart-context';
+import { CartProvider } from './context/cart.context';
 import reportWebVitals from './reportWebVitals';
 import { theme } from './theme';
 

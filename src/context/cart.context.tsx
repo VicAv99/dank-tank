@@ -3,12 +3,20 @@ import { createContext, PropsWithChildren } from 'react';
 import { Product } from '../api-interfaces';
 import { useCartContext } from '../hooks';
 
-interface CartState {
+export interface CartState {
   products?: Product[];
+  addToCart: (product: Product) => void;
+  removeFromCart: (product: Product) => void;
+  clearCart: () => void;
+  cartCount: number;
 }
 
 export const CartContext = createContext<CartState>({
-  products: undefined,
+  products: [],
+  addToCart: () => { },
+  removeFromCart: () => { },
+  clearCart: () => { },
+  cartCount: 0
 });
 
 export const CartProvider = ({ children }: PropsWithChildren<unknown>) => {
