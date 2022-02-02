@@ -8,7 +8,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
-  const addToCartClicked = (product) => onAddToCart(product);
+  const addToCartClicked = () => onAddToCart(product);
 
   return (
     <Card sx={{ width: 250, height: "auto" }}>

@@ -56,7 +56,7 @@ export const useCartContext = () => {
 };
 
 const CartReducer = (state, action) => {
-  const filterProduct = (product) => {
+  const filterProduct = (product: Product) => {
     return product.product_id !== action.payload.product_id;
   };
 
@@ -70,15 +70,15 @@ const CartReducer = (state, action) => {
     case CartActions.ADD_TO_CART: {
       return {
         ...state,
-        products: state.products.filter(filterProduct),
+        products: [...state.products.filter(filterProduct)],
         selectedProducts: [...(state.selectedProducts ?? []), action.payload],
       };
     }
     case CartActions.REMOVE_FROM_CART: {
       return {
         ...state,
-        products: [...state.products, state.selectedProduct],
-        selectedProducts: state.selectedProducts?.filter(filterProduct),
+        products: [...state.products, action.payload],
+        selectedProducts: [...state.selectedProducts?.filter(filterProduct)],
       };
     }
     case CartActions.CLEAR_CART: {
