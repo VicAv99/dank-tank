@@ -18,13 +18,15 @@ import { Product } from '../api-interfaces';
 interface CartSummaryProps {
   selectedProducts: Product[];
   onClearCart?: () => void;
+  onSubmitPurchase?: () => void;
 }
 
-export const CartSummary = ({ selectedProducts, onClearCart }: CartSummaryProps) => {
+export const CartSummary = ({ selectedProducts, onClearCart, onSubmitPurchase }: CartSummaryProps) => {
   const handleDecimal = (num: number) => parseFloat(num.toFixed(2));
   const selectedProductsTotal = handleDecimal(selectedProducts.reduce((prev, curr) => prev + curr.sort_price, 0));
   const salesTax = handleDecimal((selectedProductsTotal * 0.1));
   const cartTotal = handleDecimal((selectedProductsTotal + salesTax));
+  const hasProductsSelected = !!selectedProducts.length;
 
   return (
     <Card sx={{ minWidth: 275 }}>
@@ -36,7 +38,7 @@ export const CartSummary = ({ selectedProducts, onClearCart }: CartSummaryProps)
         }
         action={
           <>
-            {!!selectedProducts.length && <Tooltip title="Clear entire cart">
+            {hasProductsSelected && <Tooltip title="Clear entire cart">
               <IconButton onClick={onClearCart} color="error">
                 <DeleteForeverIcon />
               </IconButton>
@@ -76,7 +78,7 @@ export const CartSummary = ({ selectedProducts, onClearCart }: CartSummaryProps)
         <Divider />
       </CardContent>
       <CardActions>
-        <Button fullWidth variant="contained" color="primary" size="small">Buy Now</Button>
+        <Button disabled={!hasProductsSelected} onClick={onSubmitPurchase} fullWidth variant="contained" color="primary" size="small">Buy Now</Button>
       </CardActions>
     </Card>
   );
