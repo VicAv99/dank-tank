@@ -6,6 +6,7 @@ export interface ProductResponse {
 
 export interface Product {
   amount: null;
+  sort_price: number; // added this separately
   brand_subtype: string;
   brand: string;
   cannabinoids: any[];
