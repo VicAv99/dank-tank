@@ -9,6 +9,7 @@ import {
   CardHeader,
   Divider,
   IconButton,
+  Tooltip,
   Typography,
 } from '@mui/material';
 
@@ -16,9 +17,10 @@ import { Product } from '../api-interfaces';
 
 interface CartSummaryProps {
   selectedProducts: Product[];
+  onClearCart?: () => void;
 }
 
-export const CartSummary = ({ selectedProducts }: CartSummaryProps) => {
+export const CartSummary = ({ selectedProducts, onClearCart }: CartSummaryProps) => {
   const handleDecimal = (num: number) => parseFloat(num.toFixed(2));
   const selectedProductsTotal = handleDecimal(selectedProducts.reduce((prev, curr) => prev + curr.sort_price, 0));
   const salesTax = handleDecimal((selectedProductsTotal * 0.1));
@@ -33,9 +35,13 @@ export const CartSummary = ({ selectedProducts }: CartSummaryProps) => {
           </Avatar>
         }
         action={
-          <IconButton color="error">
-            <DeleteForeverIcon />
-          </IconButton>
+          <>
+            {!!selectedProducts.length && <Tooltip title="Clear entire cart">
+              <IconButton onClick={onClearCart} color="error">
+                <DeleteForeverIcon />
+              </IconButton>
+            </Tooltip>}
+          </>
         }
         title="Cart Summary"
         subheader={new Date().toLocaleDateString()}

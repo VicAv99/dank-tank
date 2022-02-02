@@ -43,6 +43,7 @@ export const useCartContext = () => {
   const clearCart = () => {
     dispatch({
       type: CartActions.CLEAR_CART,
+      payload: products,
     });
   };
 
@@ -84,6 +85,7 @@ const CartReducer = (state, action) => {
     case CartActions.CLEAR_CART: {
       return {
         ...state,
+        products: [...action.payload],
         selectedProducts: [],
       };
     }

@@ -4,10 +4,13 @@ import { Box, Card, CardHeader, IconButton, Typography } from '@mui/material';
 import { Product } from '../api-interfaces';
 
 interface CartProductCardProps {
-  product: Product
+  product: Product;
+  onRemoveProductClicked?: (product: Product) => void;
 }
 
-export const CartProductCard = ({ product }: CartProductCardProps) => {
+export const CartProductCard = ({ product, onRemoveProductClicked }: CartProductCardProps) => {
+  const removeProductClicked = () => onRemoveProductClicked?.(product);
+
   return (
     <Card key={product.product_id} sx={{ marginBottom: 1 }}>
       <CardHeader
@@ -20,7 +23,7 @@ export const CartProductCard = ({ product }: CartProductCardProps) => {
             <Typography variant="overline" component="h4">
               ${product.sort_price}
             </Typography>
-            <IconButton color="error">
+            <IconButton onClick={removeProductClicked} color="error">
               <ClearOutlinedIcon />
             </IconButton>
           </Box>
