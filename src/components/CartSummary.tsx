@@ -1,4 +1,16 @@
-import { Avatar, Box, Button, Card, CardActions, CardContent, CardHeader, Divider, Typography } from '@mui/material';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForeverOutlined';
+import {
+  Avatar,
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Divider,
+  IconButton,
+  Typography,
+} from '@mui/material';
 
 import { Product } from '../api-interfaces';
 
@@ -7,6 +19,11 @@ interface CartSummaryProps {
 }
 
 export const CartSummary = ({ selectedProducts }: CartSummaryProps) => {
+  const handleDecimal = (num: number) => parseFloat(num.toFixed(2));
+  const selectedProductsTotal = handleDecimal(selectedProducts.reduce((prev, curr) => prev + curr.sort_price, 0));
+  const salesTax = handleDecimal((selectedProductsTotal * 0.1));
+  const cartTotal = handleDecimal((selectedProductsTotal + salesTax));
+
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardHeader
@@ -14,6 +31,11 @@ export const CartSummary = ({ selectedProducts }: CartSummaryProps) => {
           <Avatar variant="rounded">
             DT
           </Avatar>
+        }
+        action={
+          <IconButton color="error">
+            <DeleteForeverIcon />
+          </IconButton>
         }
         title="Cart Summary"
         subheader={new Date().toLocaleDateString()}
@@ -24,7 +46,7 @@ export const CartSummary = ({ selectedProducts }: CartSummaryProps) => {
             Subtotal
           </Typography>
           <Typography variant="h6" component="div">
-            $5.00
+            ${selectedProductsTotal}
           </Typography>
         </Box>
         <Divider />
@@ -33,7 +55,7 @@ export const CartSummary = ({ selectedProducts }: CartSummaryProps) => {
             Sales Tax
           </Typography>
           <Typography variant="h6" component="div">
-            $5.00
+            <Typography sx={{ color: 'gray' }} variant="subtitle2" component="span">{salesTax > 0 && `($${salesTax})`}</Typography> 10%
           </Typography>
         </Box>
         <Divider />
@@ -42,7 +64,7 @@ export const CartSummary = ({ selectedProducts }: CartSummaryProps) => {
             Total
           </Typography>
           <Typography variant="h6" component="div">
-            $10.00
+            ${cartTotal}
           </Typography>
         </Box>
         <Divider />
