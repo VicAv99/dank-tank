@@ -73,8 +73,7 @@ test('When a customer types in a search box some text, the product results shoul
 test('Customer should be able to add a product to their cart.', () => {
   renderWithProviders(Home);
 
-  // product-add-to-cart-{id}
-  const firstProduct = screen.getByTestId("1-button");
+  const firstProduct = screen.getByTestId("product-add-to-cart-1");
 
   userEvent.click(firstProduct);
 
@@ -85,7 +84,7 @@ test('Customer should be able to add a product to their cart.', () => {
 test('Customer should be able to remove a product from their cart.', () => {
   renderWithProviders(Cart);
 
-  const firstProduct = screen.getByTestId("delete-item-3");
+  const firstProduct = screen.getByTestId("cart-item-delete-button-3");
 
   userEvent.click(firstProduct);
 
