@@ -23,7 +23,7 @@ export const CartProductCard = ({ product, onRemoveProductClicked }: CartProduct
             <Typography variant="overline" component="h4">
               ${product.sort_price}
             </Typography>
-            <IconButton onClick={removeProductClicked} color="error">
+            <IconButton data-testid={`delete-item-${product.product_id}`} onClick={removeProductClicked} color="error">
               <ClearOutlinedIcon />
             </IconButton>
           </Box>

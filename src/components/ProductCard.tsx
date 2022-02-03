@@ -28,7 +28,7 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={addToCartClicked} size="small">Add to Cart</Button>
+        <Button data-testid={`${product.product_id}-button`} onClick={addToCartClicked} size="small">Add to Cart</Button>
       </CardActions>
     </Card>
   )
