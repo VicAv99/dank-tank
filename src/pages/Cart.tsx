@@ -7,8 +7,8 @@ import { CartContext } from '../context';
 
 
 export const Cart = () => {
-  const { selectedProducts, clearCart, removeFromCart } = useContext(CartContext);
   const [open, setOpen] = useState(false);
+  const { selectedProducts, clearCart, removeFromCart } = useContext(CartContext);
 
   const handleClearCart = () => {
     clearCart();
@@ -49,6 +49,7 @@ export const Cart = () => {
         autoHideDuration={6000}
         onClose={handleClose}
         message="Order Placed!"
+        anchorOrigin={{ vertical: "bottom", horizontal: 'center' }}
       />
     </Container>
   );
